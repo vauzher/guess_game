@@ -151,7 +151,7 @@ def play_page():
         - Try to guess what it is!
         - You have 3 hints available!
         
-        Type your guess below and I'll let you know if you're getting closer!
+        Type your guess below and let's get started!
         """)
         
         try:
