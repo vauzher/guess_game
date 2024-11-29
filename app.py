@@ -115,7 +115,7 @@ def play_page():
         st.session_state.new_game_clicked = False
         st.session_state.game_history = []
         st.session_state.current_answer = get_answer_for_mode(st.session_state.game_mode)
-        st.rerun()
+        st.experimental_rerun()
     
     new_mode = st.sidebar.selectbox(
         "Select Game Mode",
@@ -127,7 +127,7 @@ def play_page():
     if st.session_state.new_game_clicked or new_mode != st.session_state.game_mode:
         st.session_state.game_mode = new_mode
         reset_game()
-        st.rerun()
+        st.experimental_rerun()
     
     # Initialize answer if not set
     if not st.session_state.current_answer:
@@ -185,7 +185,7 @@ def play_page():
         with col2:
             if st.button("Start New Game", use_container_width=True):
                 reset_game()
-                st.rerun()
+                st.experimental_rerun()
         return
 
     if user_input:
@@ -205,14 +205,14 @@ def play_page():
             
             st.session_state.game_won = True
             st.balloons()
-            st.rerun()
+            st.experimental_rerun()
         else:
             # Modified to only tell if the guess is wrong, no additional hints
             st.session_state.game_history.append({
                 "user": user_input, 
                 "bot": "Sorry, that's not correct. Try again or use a hint!"
             })
-            st.rerun()
+            st.experimental_rerun()
 
     # Modify the hint button section
     current_hints = st.session_state.hints_remaining[st.session_state.game_mode]
@@ -228,7 +228,7 @@ def play_page():
                 )
                 st.session_state.hints_remaining[st.session_state.game_mode] -= 1
                 st.session_state.game_history.append({"user": "Hint requested", "bot": response.choices[0].message.content})
-                st.rerun()
+                st.experimental_rerun()
             except Exception as e:
                 st.error(f"Error getting hint: {str(e)}")
 
