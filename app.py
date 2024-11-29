@@ -155,7 +155,7 @@ def play_page():
         """)
         
         try:
-            response = openai.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": f"You are running a guessing game where the answer is '{st.session_state.current_answer}'. Provide an initial cryptic hint that makes the game fun but doesn't give away the answer too easily. Make it playful and engaging."},
@@ -219,7 +219,7 @@ def play_page():
     if current_hints > 0 and not st.session_state.game_won:
         if st.button(f"Get Hint ({current_hints} remaining)"):
             try:
-                response = openai.chat.completions.create(
+                response = openai.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=[
                         {"role": "system", "content": f"The answer is '{st.session_state.current_answer}'. Provide a helpful hint without giving away the answer directly."},
