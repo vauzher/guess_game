@@ -13,7 +13,7 @@ load_dotenv()
 
 #OpenAI Configuration
 api_key = os.getenv("OPENAI_API_KEY")
-client = openai.OpenAI(api_key=api_key)
+openai.api_key = api_key
 
 st.set_page_config(page_title="Guessing Game", layout="wide")
 
